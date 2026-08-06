@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://tarek-h-mahmoud.github.io/sitemap.xml
