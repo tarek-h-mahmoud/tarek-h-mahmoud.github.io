@@ -101,6 +101,11 @@ jobs:
         run: |
           npm install -g purgecss
           purgecss -c purgecss.config.js
+      - name: Mark output as pre-built 🚫
+        # Tells GitHub Pages to serve gh-pages verbatim instead of running its
+        # own Jekyll over already-built output, which drops paths beginning
+        # with an underscore and cannot load this site's gems in any case.
+        run: touch _site/.nojekyll
       - name: Deploy 🚀
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4

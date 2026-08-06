@@ -1,0 +1,48 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@charset "utf-8";
+
+// Local override of al_folio_core's assets/css/main.scss.
+//
+// The only change from the gem's copy is the $purple-color override
+// below. The theme wires --global-theme-color and --global-hover-color
+// to $purple-color, so setting it here repaints links, venue badges,
+// buttons and the navbar accent from magenta to blue in one place.
+// $light-purple-color and $code-bg-color-light are derived from it and
+// follow automatically. Every @use below resolves to the gem's _sass
+// partials; nothing else is shadowed.
+
+@use "sass:math";
+@use "sass:string";
+
+@use "variables" with (
+  $max-content-width: {{ site.max_width | default:  "930px" }},
+  $purple-color: #0a66c2
+);
+
+@use "themes";
+@use "layout";
+
+// Core styles organized by usage
+@use "typography";
+@use "navbar";
+@use "footer";
+@use "blog";
+@use "publications";
+@use "components";
+@use "utilities";
+
+// Other specialized styles
+@use "tabs";
+@use "teachings";
+@use "typograms";
+
+// Markdown of the form [*Title*](url) renders as <a><em>Title</em></a>.
+// The <em> was resolving to black while the surrounding <a> kept the
+// accent colour, so linked paper titles in the news feed did not look
+// like links at all. Italic inside a link should take the link's colour.
+a em,
+a i {
+  color: inherit;
+}
