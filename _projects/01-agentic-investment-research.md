@@ -1,30 +1,42 @@
 ---
 layout: page
-title: Agentic AI Investment Research Assistant
+title: Agentic AI Investment Research and Reporting Platform
 permalink: /projects/agentic-investment-research/
 group: Product Development
 order: 1
-context: Investment analysis for a large institutional client
-summary: Developed an agentic research assistant for investment analysis over large financial-report collections. The system combines retrieval-augmented generation, tool-calling workflows, and structured analytical reporting, building on Presight Vitruvian and Presight Report Optimizer.
-tech: [RAG, Tool Calling, LLMs, LangChain]
+context: Equity and macroeconomic research for a large institutional investment organization
+summary: Built production agentic workflows for equity and macroeconomic research, combining hybrid retrieval, metadata filtering, and hierarchical map-reduce synthesis over licensed research and analyst valuation models to produce template-driven reports with claim-level citations.
+tech: [RAG, LangChain, LangGraph, LLM Evaluation]
 ---
 
 ### Problem
 
-Investment analysts needed faster synthesis of dense financial reporting to support decisions for a large institutional client. Manual review did not scale to the volume of filings involved, and the decision context left little tolerance for unsupported claims.
+A large institutional investment organization needed to accelerate research across its equity and macroeconomic teams. Analysts manually synthesized licensed financial research, company fundamentals, and internal valuation models into highly structured reports. The process was slow, difficult to scale, and required every conclusion to remain traceable to its supporting evidence.
 
 ### My role
 
-Principal data scientist and technical lead, responsible for the agentic workflow end to end: tool-calling architecture, retrieval pipeline, and analyst-facing output formatting.
+Principal data scientist and technical lead, responsible for client discovery, solution architecture, implementation, evaluation, and production delivery.
+
+I worked directly with investment analysts to understand their research process and translate separate equity and macroeconomic reporting requirements into production agentic workflows. I developed the Python services, APIs, custom tools, LangChain components, LangGraph workflows, document-ingestion pipeline, retrieval architecture, evaluation framework, and grounding controls.
 
 ### Approach
 
-An LLM agent with tool-calling access to a financial-report retrieval layer, a summarization stage, and a scenario-analysis module for "what-if" questions posed against retrieved documents. Prompting was tuned for reliable structured output, and the assistant builds on two existing Presight products, Vitruvian and Report Optimizer.
+Built separate agentic workflows for equity and macroeconomic research. The system processed licensed research reports and analyst-provided valuation models stored on client-side SharePoint.
+
+Documents were indexed using overlapping chunks. A routing workflow interpreted each request, selected the appropriate reporting cadence, and generated structured metadata filters covering ticker, country, sector, analyst, fiscal period, research category, and access permissions.
+
+Retrieval combined full-text and vector search to capture both exact financial terminology and semantic relevance. Custom recency rules selected the appropriate monthly, six-month, or annual research horizon and prioritized the latest applicable report from each provider.
+
+For each request, the system translated the selected report template into a template-specific LangGraph execution plan. Specialized processing steps analyzed individual sections, called retrieval and document-processing tools, and progressively synthesized their outputs through a hierarchical map-reduce process. LangGraph orchestrated shared state, dependencies, parallel branches, and aggregation, while LangChain integrations connected the OpenAI models, retrievers, prompt templates, and tools.
+
+The workflow generated a formatted report containing an executive summary, financial tables, visualizations, and claim-level citations.
+
+Grounding checkpoints and LLM-as-a-judge evaluations assessed generated content for factual support, hallucinations, citation correctness, numerical accuracy, completeness, and relevance. Retrieval was evaluated using Precision@K and Recall@K, with Langfuse used for tracing and analysis. Investment analysts reviewed reports section by section and provided detailed qualitative feedback across multiple iterations.
 
 ### Outcome
 
-Adopted for investment research workflows at a large institutional client.
+Delivered a production deployment and secured a commercial contract combining software subscription and professional services within approximately six months of the initial client meeting. Reports were generated in roughly 5–10 minutes, and the client's managing director reported a 7× improvement in analyst productivity.
 
 ### Technologies
 
-Retrieval-augmented generation, LLM tool calling, LangChain, financial-document retrieval, structured analytical reporting.
+GPT-5, OpenAI `text-embedding-3-large`, Python, LangChain, LangGraph, Langfuse, retrieval-augmented generation, LLM tool calling, hybrid retrieval, metadata filtering, hierarchical map-reduce synthesis, LLM-as-a-judge, SharePoint, Kubernetes.
