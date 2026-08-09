@@ -5,45 +5,70 @@ permalink: /projects/realtime-speech-translation/
 group: Product Development
 order: 3
 context: Live multilingual events and post-meeting intelligence
-summary: Architected a bidirectional Arabic-English speech interpreter delivering live transcription, translation, and synthesized headset audio for high-profile events, with operator and audience displays, later extended into speaker-attributed meeting records, summaries, decisions, and action items.
+summary: Architected a multilingual streaming speech interpreter delivering live transcription, translation, and synthesized interpretation for high-profile events, with operator and audience displays, later extended into speaker-attributed meeting records, summaries, decisions, and action items.
 tech: [Azure Speech, Real-Time Translation, Speaker Diarization, PyQt]
 ---
 
 ### Problem
 
-High-profile multilingual events required simultaneous Arabic-English transcription and translation, with spoken output for headset users and latency low enough to follow live speeches. The system also needed to operate continuously across multiple presenters while providing professional audience displays and reliable operator controls.
+High-profile multilingual events required real-time transcription, translation, and spoken interpretation with sufficiently low latency to follow live speeches. The system also needed to run continuously across multiple presenters while providing professional audience displays and reliable operator controls.
 
-Government organizations later needed the same speech foundation extended into speaker-attributed meeting records, summaries, decisions, and action items.
+Government organizations later needed the same speech platform extended into speaker-attributed meeting records, summaries, decisions, and action items.
 
 ### My role
 
-Architect and lead developer of the end-to-end system, responsible for service selection, speech-pipeline implementation, desktop interfaces, Windows packaging, comparative evaluation, client requirements, on-site installation, and live operation.
+Architect and lead developer of the end-to-end platform, responsible for:
 
-I also developed the meeting-intelligence extension and later led early productization planning with cloud-platform and Microsoft architecture teams.
+- Speech and translation architecture
+- Desktop application and audience interfaces
+- Windows packaging and license management
+- Independent comparative evaluation
+- Client requirements and on-site installation
+- Live event operation
+- Meeting-intelligence extension
+- Azure-native productization planning
 
 ### Approach
 
-Built a bidirectional Arabic-English pipeline using the Azure Speech SDK and `SpeechTranslationConfig`. Continuous-recognition events produced interim transcription and translation results as speech occurred, followed by corrected final results at the end of each utterance. Azure neural text-to-speech generated translated audio with minimal latency.
+#### Live Speech Interpreter
+
+Built a configurable multilingual streaming pipeline using Azure AI Speech:
+
+- Generated interim transcription and translation results as speech occurred, followed by corrected final results
+- Produced synthesized translated speech with minimal additional latency
+- Supported continuous operation across multiple presenters and extended speaking sessions
+- Maintained separate input, output, voice, playback, and language controls
 
 Developed two audience presentation modes:
 
-- Real-time subtitles displaying live transcription and translation
-- "Cinematic subtitles" synchronizing translated speech with word-level highlighting during playback
+- Real-time subtitles: Continuously displayed live transcription and translation
+- Cinematic subtitles: Synchronized translated speech with word-level highlighting during playback
 
-A PyQt desktop application provided a dedicated operator console and separate audience-facing windows. Operators could manage source and target languages, microphones and mixer inputs, synthesized voices, audio outputs, playback speed, segmentation, typography, colors, opacity, scrolling, fading, and placement across multiple monitors.
+A PyQt operator console controlled microphones, mixer inputs, synthesized voices, audio outputs, playback speed, segmentation, typography, colors, opacity, scrolling, fading, and audience-window placement across multiple monitors.
 
-The application was packaged as a standalone Windows executable with a professional installer and time-limited license management for controlled deployments.
+The application was distributed as a standalone Windows executable with a professional installer and time-limited licensing.
 
-Independent bilingual reviewers compared the system against two alternative implementations across transcription accuracy, translation quality, latency, speech intelligibility, bidirectional Arabic-English performance, and stability during extended speech. My implementation received the strongest overall evaluation and was selected for live use.
+Independent human reviewers compared the system with two competing implementations across transcription accuracy, translation quality, latency, speech intelligibility, and stability during extended operation. My implementation received the strongest overall evaluation and was selected for live use.
 
-The platform was later extended with batch transcription and speaker diarization for meeting intelligence. It retained original recordings and transcripts while using an Azure-hosted LLM to refine transcription, generate executive summaries, identify decisions, extract action items and owners, organize discussion topics, and produce template-based Word and PDF reports.
+#### Meeting Intelligence
+
+Extended the platform with batch transcription, speaker diarization, and LLM-powered meeting analysis:
+
+- Preserved original recordings and transcripts
+- Produced refined, speaker-attributed transcripts
+- Generated executive summaries and discussion topics
+- Identified decisions, action items, owners, and follow-up requirements
+- Created template-based Word and PDF reports
+- Maintained searchable archives of previous meetings
 
 ### Outcome
 
-Successfully operated for four continuous hours during a high-profile multilingual event involving multiple presenters. Following its initial success, the system garnered interest and was reused across additional government events and high-level delegations.
-
-The meeting-intelligence extension entered immediate production use across multiple government organizations and remains in ongoing operation. Its adoption helped secure an approximately $3 million client engagement and led to an ongoing effort to productize the platform as an Azure-native, subscription or usage-based offering.
+- Successfully operated for four continuous hours during a high-profile multilingual event involving multiple presenters
+- Reused across additional government events and high-level delegations
+- Meeting-intelligence extension deployed across multiple government organizations and remains in ongoing use
+- Helped secure an approximately $3 million client engagement
+- Led to an ongoing effort to productize the platform as an Azure-native, subscription or usage-based offering
 
 ### Technologies
 
-Azure AI Speech, Azure Speech SDK, Speech Translation, continuous speech recognition, neural machine translation, neural text-to-speech, batch transcription, speaker diarization, Azure-hosted LLMs, Python, PyQt, real-time streaming, Windows application packaging, human evaluation.
+Azure AI Speech, Azure Speech SDK, continuous speech recognition, neural machine translation, neural text-to-speech, batch transcription, speaker diarization, Azure-hosted LLMs, Python, PyQt, real-time streaming, Windows application packaging, human evaluation.
