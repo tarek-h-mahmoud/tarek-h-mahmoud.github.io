@@ -15,15 +15,15 @@ Published methods for spatiotemporal track and trip reconstruction could not kee
 
 ### My role
 
-Sole designer and implementer of the algorithm, including the benchmark against the published baseline.
+Designer and implementer of the algorithm, including the benchmark against the published baseline.
 
 ### Approach
 
-An unsupervised pipeline turning raw spatiotemporal pings into coherent tracks and trips. An initial compression pass followed by reconstruction heuristics brings the algorithm to linear time in the number of records — the compression stage, rather than the heuristics, is the real source of the speedup. The result runs inside automated cloud pipelines processing two to three billion records per day.
+An unsupervised pipeline turning raw spatiotemporal pings into coherent tracks and trips. A compression step collapses runs of consecutive pings from the same location into a single record spanning a start and end time, and reconstruction heuristics then operate over the compressed sequence. The algorithm makes only one pass over the data, which is what brings it to linear time in the number of records. The result runs inside automated cloud pipelines processing two to three billion records per day.
 
 ### Outcome
 
-A 20× processing improvement over the published baseline for roughly a 5% accuracy tradeoff. Became a reused production building block for downstream applications, including COVID-19 movement and exposure flagging.
+A 20× processing improvement over the published baseline for roughly a 5% accuracy tradeoff. Became a reused production building block for downstream applications.
 
 ### Technologies
 
